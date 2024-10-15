@@ -3,7 +3,6 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Fav_manga from "./components/Fav_manga";
 import Head from "next/head";
-import Link from "next/link";
 
 export default function Home() {
   return (
