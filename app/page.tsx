@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Fav_manga from "./components/Fav_manga";
 import Head from "next/head";
+import Fav_book from "./components/Fav_book";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -17,6 +19,8 @@ export default function Home() {
       <Navbar/>
       <Hero/>
       <Fav_manga/>
+      <Fav_book />
+      <Footer />
     </div>
   );
 }

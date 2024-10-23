@@ -1,27 +1,24 @@
 
-import Link from 'next/link'
 import React from 'react'
-const Projects = () => {
+import { Repos } from '../types'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+export default async function Projects() {
+  const response = await fetch('https://api.github.com/users/HungLyonLuudepythoin/repos')
+  const repos = await response.json()
   return (
-    <div className='bg-gray-700 flex-col items-center py-4 justify-items-center text-center'>
-      <div className="bg-slate-600 w-5/6 h-auto mx-auto flex-col py-5 text-white text-center items-center ">
-          <h1 className='text-2xl font-medium my-5'>Analyzing game sales sales across regions and platforms</h1>
-          <p className="py-2 text-xl w-1/2 mx-auto">This project focuses on analyzing layoff waves from major companies in the USA and around the world 
-            during the COVID-19 pandemic (2020-2023). The dataset, comprising over 2,000 rows of raw data, was cleaned and normalized 
-            to ensure accuracy. Using advanced SQL queries, trends in layoffs were extracted, focusing on industry, company size, and 
-            time period. The analysis further explores the impact of economic shifts on employment trends, with key findings presented 
-            in an interactive dashboard for clear and actionable insights</p>
-      </div>
-      <div className="bg-slate-600 w-5/6 h-auto mx-auto flex-col py-5 text-white text-center my-2">
-          <h1 className='text-2xl font-medium my-5'>Analyzing Global Layoff Trends During COVID-19: Insights from Major Companies (2020-2023)</h1>
-          <p className="py-2 text-xl w-1/2 mx-auto">This project analyzes sales breakdowns by region (NA, EU, JP, Other) 
-          and globally, identifying top-performing platforms and how each region contributes to their success. 
-          It examines sales trends over time, comparing older and newer games, and explores which genres and publishers dominate 
-          both overall and regionally.</p>
-      </div>
-      <p className='text-white font-bold hover:underline text-2xl'>My <Link href="https://github.com/HungLyonLuudepythoin/data-analyst-portfolio">github portfolio</Link></p>   
+    <div className="bg-gray-800">
+      <h2 className='text-5xl text-center text-yellow-300 font-bold py-3'>Projects</h2>
+      <ul className='text-white flex flex-row flex-wrap'>
+        {repos.map((repo: Repos) => (
+          <li key={repo.id} className='w-1/2 bg-gray-600 p-5 border-4 border-gray-800 box-border rounded-xl 
+          transform hover:scale-105 transition duration-300'>
+            <div className="font-semibold">{repo.name}</div>
+            <Button className='mt-3'><Link href={repo.html_url}>Link repository</Link></Button>
+          </li>
+          ))
+       } 
+      </ul>
     </div>
   )
 }
-
-export default Projects
